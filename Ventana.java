@@ -17,18 +17,20 @@ public class Ventana extends JFrame implements ActionListener{
     private Double Resp = 0D;
     private String Operacion = "";
     static final int TAMANIO_FUENTE_TITULO=30;
-    static final int TAMANIO_FUENTE_BOTON=20;
-    static final Color COLOR_TITULO=new Color(22,126,19);
+    static final int TAMANIO_FUENTE_BOTON=12;
+    static final Color COLOR_TITULO=new Color(0,0,0);
     static final Color COLOR_FUENTE_BOTON=new Color(8,16,113);
-    static final Color COLOR_FONDO_BOTON=new Color(151,225,255,255);
+    static final Color COLOR_FONDO_BOTON=new Color(121,132,134);
+    static final Color COLOR_FONDO_BOTO=new Color(181,32,13);
      static final String FUENTE_TITULO = "Broadway";
       static final String FUENTE_BOTON = "arial black";
+      static final Color COLOR_FONDO_PANEL=new Color(74, 136, 143);
       
        /*CREANDO PANEL*/
     private Mi_Panel Panel=new Mi_Panel();
      
       /*CREANDO TITULO*/
-    private Mi_Label Titulo=new Mi_Label("Mi Calculadora",TAMANIO_FUENTE_TITULO);
+    private Mi_Label Titulo=new Mi_Label(" CALCULADORA",TAMANIO_FUENTE_TITULO);
    
     /*CREANDO PANTALLITA DE IMPRESION*/
     private Mi_Pantalla Pantallita=new Mi_Pantalla("0");
@@ -48,7 +50,7 @@ public class Ventana extends JFrame implements ActionListener{
            private MiBoton Boton8=new MiBoton("8");
             private MiBoton Boton9=new MiBoton("9");
              private MiBoton Boton0=new MiBoton("0");
-    private MiBoton Boton_Signo=new MiBoton("+/-");
+    private MiBoton Boton_Signo=new MiBoton("±");
      private MiBoton Boton_Punto=new MiBoton(".");
       private MiBoton Boton_Restar=new MiBoton("-");
        private MiBoton Boton_Sumar=new MiBoton("+");
@@ -66,12 +68,12 @@ public class Ventana extends JFrame implements ActionListener{
     
 public Ventana(){
      //setUndecorated(true);
-      setBounds(450, 120, 445, 515);
+      setBounds(450, 120, 350, 505);
       setLayout(null);
        setVisible(true);   //Hacer visible la ventana
         setResizable(false); //hace Visible el expandir la ventana
-        setMinimumSize(new Dimension(445,515));
-            setMaximumSize(new Dimension(445, 515));
+        setMinimumSize(new Dimension(350,505));
+            setMaximumSize(new Dimension(350, 505));
             setDefaultCloseOperation(Ventana.EXIT_ON_CLOSE);
          
           setLayout(new BorderLayout());
@@ -84,36 +86,41 @@ public Ventana(){
              Panel.add(Titulo);
              Panel.add(Pantallita);
              
+             Panel.setBackground(COLOR_FONDO_PANEL);
+             Boton_Borrar.setBackground(COLOR_FONDO_BOTO);
+             Boton_BorrarTodo.setBackground(COLOR_FONDO_BOTO); 
+           
+             
              /*COORDENADAS Y TAMAÑO DE TITULO Y PANTALLITA*/
-             Titulo.setBounds(80, 10, 350, 50);
-             Pantallita.setBounds(10, 60, 415, 30);
+             Titulo.setBounds(30, 10, 280, 50);
+             Pantallita.setBounds(10, 60, 325, 30);
        
              /*COORDENADAS Y TAMAÑO DE LOS BOTONES*/
-            Boton1.setBounds(10, 325, 80, 70);
-             Boton2.setBounds(95, 325, 80, 70);
-              Boton3.setBounds(180, 325, 80, 70);
-               Boton4.setBounds(10, 250, 80, 70);
-                Boton5.setBounds(95, 250, 80, 70);
-                 Boton6.setBounds(180, 250, 80, 70);
-                  Boton7.setBounds(10, 175, 80, 70);
-                   Boton8.setBounds(95, 175, 80, 70);
-                    Boton9.setBounds(180, 175, 80, 70);
-                     Boton0.setBounds(10, 400, 80, 70);
-            Boton_Signo.setBounds(95, 400, 80, 70);
-             Boton_Punto.setBounds(180, 400, 80, 70);
-              Boton_Restar.setBounds(265, 175, 80, 70);
-               Boton_Sumar.setBounds(265, 250, 80, 70);
-                Boton_Multiplicar.setBounds(265, 325, 80, 70);
-                 Boton_Dividir.setBounds(265, 400, 80, 70);
-                  Boton_Borrar.setBounds(350, 100, 80, 70);
-                   Boton_BorrarTodo.setBounds(350, 175, 80, 70);
-                    Boton_Inversa.setBounds(350, 325, 80, 70);
-                     Boton_Igual.setBounds(350, 400, 80, 70);
-                Boton_Pi.setBounds(10, 100, 80, 70);
-                 Boton_Raiz.setBounds(180, 100, 80, 70);
-                  Boton_Potencia.setBounds(350, 250, 80, 70);
-                   Boton_Factorial.setBounds(95, 100, 80, 70);    
-                    Boton_Exponencial.setBounds(265, 100, 80, 70);
+            Boton1.setBounds(10, 325, 60, 65);
+             Boton2.setBounds(75, 325, 60, 65);
+              Boton3.setBounds(140, 325, 60, 65);
+               Boton4.setBounds(10, 250, 60, 65);
+                Boton5.setBounds(75, 250, 60, 65);
+                 Boton6.setBounds(140, 250, 60, 65);
+                  Boton7.setBounds(10, 175, 60, 65);
+                   Boton8.setBounds(75, 175, 60, 65);
+                    Boton9.setBounds(140, 175, 60, 65);
+                     Boton0.setBounds(10, 400, 65, 65);
+            Boton_Signo.setBounds(75, 400, 65, 65);
+             Boton_Punto.setBounds(140, 400, 65, 65);
+              Boton_Restar.setBounds(205, 175, 65, 65);
+               Boton_Sumar.setBounds(205, 250, 65, 65);
+                Boton_Multiplicar.setBounds(205, 325, 65, 65);
+                 Boton_Dividir.setBounds(205, 400, 65, 65);
+                  Boton_Borrar.setBounds(270, 100, 65, 65);
+                   Boton_BorrarTodo.setBounds(270, 175, 65, 65);
+                    Boton_Inversa.setBounds(270, 325, 65, 65);
+                     Boton_Igual.setBounds(270, 400, 65, 65);
+                Boton_Pi.setBounds(10, 100, 65, 65);
+                 Boton_Raiz.setBounds(140, 100, 65, 65);
+                  Boton_Potencia.setBounds(270, 250, 65, 65);
+                   Boton_Factorial.setBounds(75, 100, 65, 65);    
+                    Boton_Exponencial.setBounds(205, 100, 65, 65);
             
        /*PONIENEDO EN ESCUCHA A LOS BOTONES NUMERICOS*/
         Boton1.addActionListener(this);
@@ -222,7 +229,7 @@ public Ventana(){
          
         if(Pulsado.equals(this.Boton_Raiz)){ 
             if(op!=false){
-                 Pantallita.setText(calculo.RaizCua(Pantallita.getText())); 
+                Pantallita.setText(String.valueOf(calculo.RaizCua(Double.parseDouble(Pantallita.getText()))));  
             }else{
                  JOptionPane.showMessageDialog(null, "ERROR, QUE DOMONIOS INGRESASTES "+""
                                                + "\n"+"NO ES POSIBLE REALIZAR LA OPERACION");

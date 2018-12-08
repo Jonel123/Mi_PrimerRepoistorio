@@ -6,7 +6,6 @@
 package Calculadora;
 
 import java.awt.Color;
-import java.awt.Font;
 import javax.swing.JTextField;
 
 /**
@@ -20,8 +19,7 @@ public class Mi_Pantalla extends JTextField {
     }
     public Mi_Pantalla(String p){
         super(p);
-        //setFont(new Font(Ventana.FUENTE_TITULO,Font.BOLD, tamanio));
-        setBackground(Color.cyan);
+        setBackground(Color.LIGHT_GRAY);
         setForeground(Color.blue);
     }
 }

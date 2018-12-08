@@ -5,6 +5,7 @@
  */
 package Calculadora;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.LayoutManager;
@@ -18,21 +19,22 @@ import javax.swing.JPanel;
  */
 public class Mi_Panel extends JPanel {
      
-    private URL url = getClass().getResource("/Imagen/Tingo_Maria.jpg");
-    Image image = new ImageIcon(url).getImage();
+//    private URL url = getClass().getResource("/Imagen/Tingo_Maria.jpg");
+//    Image image = new ImageIcon(url).getImage();
     public Mi_Panel(){
         super();
     }
     
     public Mi_Panel(LayoutManager layout){
         super(layout);
+       
     }
      
-    @Override
-    public void paint(Graphics g){
-        g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
-        setOpaque(false);
-        super.paint(g);
-    }
-    
+//    @Override
+//    public void paint(Graphics g){
+//        g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+//        setOpaque(false);
+//        super.paint(g);
+//    }
+//    
 }

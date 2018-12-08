@@ -70,12 +70,12 @@ public class Calculadora {
        return entrada;
    }
    
-   public String RaizCua(String numero){
-        Double  raiz=Math.sqrt(Double.parseDouble(numero));
-        String SRaiz=String.valueOf(raiz);
+   public Double RaizCua(Double numero){
+        Double  raiz=Math.sqrt(numero);
+        Double SRaiz= raiz;
+        
             return SRaiz;
-         
-           
+                  
    }
     
    public String BotonBorrar(String Cadena){
@@ -112,21 +112,6 @@ public class Calculadora {
    }
    
    public long BotonFactorial(int numero){
-//       int facto=1;
-//       
-//            if (numero<=0) {
-//                facto=0;
-//             }
-//       if (numero==1 || numero==0) {
-//           facto=1;
-//           
-//       }else{
-//           for (int i = numero; i >=1; i--) {
-//               facto=facto*i;
-//               
-//           }
-//       } 
-//       return String.valueOf(facto);
   if (numero < 0) {
             return 0;
         } else {
