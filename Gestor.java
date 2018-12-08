@@ -11,6 +11,8 @@ package Calculadora;
 public class Gestor {
     public static void main(String[] args) {
        Ventana Pantall=new Ventana();
+       Pantall.Propiedades_Ventana_Principal();
+       Pantall.setVisible(true);
     }    
     
 }

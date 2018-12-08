@@ -5,7 +5,6 @@
  */
 package Calculadora;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.LayoutManager;
@@ -27,7 +26,7 @@ public class Mi_Panel extends JPanel {
     
     public Mi_Panel(LayoutManager layout){
         super(layout);
-       
+        
     }
      
 //    @Override

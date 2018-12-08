@@ -17,14 +17,14 @@ public class Ventana extends JFrame implements ActionListener{
     private Double Resp = 0D;
     private String Operacion = "";
     static final int TAMANIO_FUENTE_TITULO=30;
-    static final int TAMANIO_FUENTE_BOTON=12;
+    static final int TAMANIO_FUENTE_BOTON=13;
     static final Color COLOR_TITULO=new Color(0,0,0);
     static final Color COLOR_FUENTE_BOTON=new Color(8,16,113);
     static final Color COLOR_FONDO_BOTON=new Color(121,132,134);
     static final Color COLOR_FONDO_BOTO=new Color(181,32,13);
-     static final String FUENTE_TITULO = "Broadway";
-      static final String FUENTE_BOTON = "arial black";
-      static final Color COLOR_FONDO_PANEL=new Color(74, 136, 143);
+    static final String FUENTE_TITULO = "Broadway";
+    static final String FUENTE_BOTON = "arial black";
+    static final Color COLOR_FONDO_PANEL=new Color(74, 136, 143);
       
        /*CREANDO PANEL*/
     private Mi_Panel Panel=new Mi_Panel();
@@ -65,18 +65,25 @@ public class Ventana extends JFrame implements ActionListener{
       private MiBoton Boton_Potencia=new MiBoton("n^2");
        private MiBoton Boton_Factorial=new MiBoton("n!");
         private MiBoton Boton_Exponencial=new MiBoton("e");
+          private MiBoton Boton_Minimizar=new MiBoton("MINIMIZAR");
+            private MiBoton Boton_Cerrar=new MiBoton("CERRAR");
+             //private MiBoton Boton_MAXIM=new MiBoton("MAXMINIZAR");
+           
     
 public Ventana(){
-     //setUndecorated(true);
-      setBounds(450, 120, 350, 505);
+     setUndecorated(true);
+      setBounds(490, 70, 345, 510);
       setLayout(null);
        setVisible(true);   //Hacer visible la ventana
         setResizable(false); //hace Visible el expandir la ventana
-        setMinimumSize(new Dimension(350,505));
-            setMaximumSize(new Dimension(350, 505));
+        setMinimumSize(new Dimension(345,510));
+            setMaximumSize(new Dimension(345, 510));
             setDefaultCloseOperation(Ventana.EXIT_ON_CLOSE);
          
           setLayout(new BorderLayout());
+      }
+
+ public void Propiedades_Ventana_Principal(){
           
             Panel.setLayout(null);
                         
@@ -87,40 +94,40 @@ public Ventana(){
              Panel.add(Pantallita);
              
              Panel.setBackground(COLOR_FONDO_PANEL);
-             Boton_Borrar.setBackground(COLOR_FONDO_BOTO);
-             Boton_BorrarTodo.setBackground(COLOR_FONDO_BOTO); 
-           
              
              /*COORDENADAS Y TAMAÑO DE TITULO Y PANTALLITA*/
-             Titulo.setBounds(30, 10, 280, 50);
-             Pantallita.setBounds(10, 60, 325, 30);
+             Titulo.setBounds(30, 35, 310, 40);
+             Pantallita.setBounds(10, 80, 325, 40);
        
              /*COORDENADAS Y TAMAÑO DE LOS BOTONES*/
-            Boton1.setBounds(10, 325, 60, 65);
-             Boton2.setBounds(75, 325, 60, 65);
-              Boton3.setBounds(140, 325, 60, 65);
-               Boton4.setBounds(10, 250, 60, 65);
-                Boton5.setBounds(75, 250, 60, 65);
-                 Boton6.setBounds(140, 250, 60, 65);
-                  Boton7.setBounds(10, 175, 60, 65);
-                   Boton8.setBounds(75, 175, 60, 65);
-                    Boton9.setBounds(140, 175, 60, 65);
-                     Boton0.setBounds(10, 400, 65, 65);
-            Boton_Signo.setBounds(75, 400, 65, 65);
-             Boton_Punto.setBounds(140, 400, 65, 65);
-              Boton_Restar.setBounds(205, 175, 65, 65);
-               Boton_Sumar.setBounds(205, 250, 65, 65);
-                Boton_Multiplicar.setBounds(205, 325, 65, 65);
-                 Boton_Dividir.setBounds(205, 400, 65, 65);
-                  Boton_Borrar.setBounds(270, 100, 65, 65);
-                   Boton_BorrarTodo.setBounds(270, 175, 65, 65);
-                    Boton_Inversa.setBounds(270, 325, 65, 65);
-                     Boton_Igual.setBounds(270, 400, 65, 65);
-                Boton_Pi.setBounds(10, 100, 65, 65);
-                 Boton_Raiz.setBounds(140, 100, 65, 65);
-                  Boton_Potencia.setBounds(270, 250, 65, 65);
-                   Boton_Factorial.setBounds(75, 100, 65, 65);    
-                    Boton_Exponencial.setBounds(205, 100, 65, 65);
+            Boton1.setBounds(10, 355, 60, 65);
+             Boton2.setBounds(75, 355, 60, 65);
+              Boton3.setBounds(140, 355, 60, 65);
+               Boton4.setBounds(10, 280, 60, 65);
+                Boton5.setBounds(75, 280, 60, 65);
+                 Boton6.setBounds(140, 280, 60, 65);
+                  Boton7.setBounds(10, 205, 60, 65);
+                   Boton8.setBounds(75, 205, 60, 65);
+                    Boton9.setBounds(140, 205, 60, 65);
+                     Boton0.setBounds(10, 430, 65, 65);
+            Boton_Signo.setBounds(75, 430, 65, 65);
+             Boton_Punto.setBounds(140, 430, 65, 65);
+              Boton_Restar.setBounds(205, 205, 65, 65);
+               Boton_Sumar.setBounds(205, 280, 65, 65);
+                Boton_Multiplicar.setBounds(205, 355, 65, 65);
+                 Boton_Dividir.setBounds(205, 430, 65, 65);
+                  Boton_Borrar.setBounds(270, 130, 65, 65);
+                   Boton_BorrarTodo.setBounds(270, 205, 65, 65);
+                    Boton_Inversa.setBounds(270, 355, 65, 65);
+                     Boton_Igual.setBounds(270, 430, 65, 65);
+                Boton_Pi.setBounds(10, 130, 65, 65);
+                 Boton_Raiz.setBounds(140, 130, 65, 65);
+                  Boton_Potencia.setBounds(270, 280, 65, 65);
+                   Boton_Factorial.setBounds(75, 130, 65, 65);    
+                    Boton_Exponencial.setBounds(205, 130, 65, 65);
+                    Boton_Minimizar.setBounds(115, 2, 125, 30);
+                    Boton_Cerrar.setBounds(240, 2, 100, 30);
+                    //Boton_MAXIM.setBounds(115, 2, 100, 30);
             
        /*PONIENEDO EN ESCUCHA A LOS BOTONES NUMERICOS*/
         Boton1.addActionListener(this);
@@ -162,6 +169,9 @@ public Ventana(){
           Boton_Potencia.addActionListener(this);
           Boton_Factorial.addActionListener(this);
           Boton_Exponencial.addActionListener(this);
+          Boton_Cerrar.addActionListener(this);
+          Boton_Minimizar.addActionListener(this);
+          //Boton_MAXIM.addActionListener(this);
                    
           /*AGREGANDO BOTONES DE OPERACIONES AL PANEL*/  
           Panel.add(Boton_Signo);
@@ -179,6 +189,9 @@ public Ventana(){
               Panel.add(Boton_Potencia);
                Panel.add(Boton_Factorial);
                 Panel.add(Boton_Exponencial);
+                Panel.add(Boton_Minimizar);
+                Panel.add(Boton_Cerrar);
+                 //Panel.add(Boton_MAXIM);
     }
 
     @Override
@@ -186,6 +199,8 @@ public Ventana(){
          Object Pulsado=ae.getSource();
          boolean op = calculo.Validar_Numero(Pantallita.getText());
           boolean facto = calculo.Validar_Facto(Pantallita.getText());
+          
+    if(Pulsado!= Boton_Cerrar || Pulsado!= Boton_Minimizar){
     
         if(Pulsado.equals(this.Boton1)){
              Pantallita.setText(calculo.Validar_Entrada(Pantallita.getText()+Boton1.getText())); 
@@ -385,8 +400,19 @@ public Ventana(){
         }else{
              JOptionPane.showMessageDialog(null, "ERROR, INGRESE NUMERO VALIDO");
              }
+      }
+        
+         if(Pulsado==Boton_Cerrar){
+             System.exit(DO_NOTHING_ON_CLOSE);
+           }
+        if(Pulsado==Boton_Minimizar){
+            setExtendedState(ICONIFIED);
+           }
+//        if(Pulsado==Boton_MAXIM){
+//            setExtendedState(MAXIMIZED_BOTH);
+//           }
     }
-  }
+   }
     
 }       
         
