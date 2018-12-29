@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package Calculadora;
 
 import static java.lang.Math.PI;
 import static java.lang.Math.E;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 /**
  *
  * @author DIONER
@@ -14,7 +17,7 @@ import static java.lang.Math.E;
 public class Calculadora {
    private Double Memoria1; 
     public static final Double P_I=PI;
-    public static final Double Exponencial=E;
+    public static final Double EXPONENCIAL=E;
 
     public Calculadora() {
         this.Memoria1=0.0;
@@ -51,43 +54,49 @@ public class Calculadora {
         return this.Memoria1;
     }
     
-   public Double Dividir(Double Memoria){
-    
-        if(this.Memoria1== 0){
-            this.Memoria1=1.0;
-        }
-        this.Memoria1 = Memoria/this.Memoria1;        
-     
-           return 1/this.Memoria1;
-     
-       
+   public Double Dividir(Double Memoria_1){
+      
+           
+           if(this.Memoria1==0){
+               this.Memoria1=1D;
+              }         
+            this.Memoria1=Memoria_1/this.Memoria1;
+             if (Memoria_1==0) {
+                     this.Memoria1=0D;
+                    }
+             return 1/this.Memoria1;
     }
     
    public String Validar_Entrada(String entrada){
        if(entrada.charAt(0)=='0'){
-           entrada = entrada.substring(1, entrada.length());                 
+           entrada = entrada.substring(0, entrada.length());                 
        }
        return entrada;
    }
    
-   public Double RaizCua(Double numero){
-        Double  raiz=Math.sqrt(numero);
-        Double SRaiz= raiz;
-        
-            return SRaiz;
-                  
+   public String RaizCua(Double numero){
+       String Raiz;
+       if (numero>=0) {      
+            Raiz=String.valueOf(Math.sqrt(numero));
+       }else{
+           Raiz= "ERROR";
+       } 
+           return Raiz;
+       
    }
     
-   public String BotonBorrar(String Cadena){
-       Cadena = Cadena.substring(0,Cadena.length()-1);
-       if (Cadena.equals("")) {
-           Cadena = "0";
-       }
-       return Cadena;
+   public String BotonBorrar(String cadena){
+          String Cadena;
+              Cadena=cadena;
+           if (Cadena.length()>0) {
+               Cadena=Cadena.substring(0, Cadena.length()-1);
+               cadena="";
+               }
+           return Cadena;
    }
    
    public String BotonBorrarTodo(String Cadena){
-       Cadena = "0";
+       Cadena = "";
        return Cadena;
    }
    public String Inverso(Double numero){
@@ -111,24 +120,31 @@ public class Calculadora {
        return String.valueOf(Cambio);
    }
    
-   public long BotonFactorial(int numero){
-  if (numero < 0) {
-            return 0;
-        } else {
-            if (numero == 0) {
-                return 1;
+   public static boolean ExistePunto(String cadena){
+        boolean Resultado;
+        Resultado=false;
+        for (int i = 0; i < cadena.length(); i++) {
+            if (cadena.substring(i, i+1).equals(".")) {
+                Resultado=true;
+                break;
             }
-            else{
-                return numero*BotonFactorial(numero-1);
-               }
         }
+        return Resultado;
+    }
+   
+   public String BotonFactorial(int numero){
+     BigInteger resp=new BigInteger("1");
+       for (int i = 1; i <= numero; i++) {
+         resp=resp.multiply(new BigInteger(Integer.toString(i)));  
+       }
+       return resp.toString();
 
+       
    }
    public boolean Validar_Numero(String Cadena){
-       Double num;
+        Double num;
        try {  
            num = Double.parseDouble(Cadena);
-           
              return true;
           } catch (NumberFormatException e) 
               {
@@ -147,6 +163,7 @@ public class Calculadora {
                return false;
               }
    }
+ 
       
 }
     

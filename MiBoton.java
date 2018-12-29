@@ -21,9 +21,9 @@ import javax.swing.JButton;
  * @author DIONER
  */
 public class MiBoton extends JButton {
-    private Color color1 = new Color(0x666f7f);
-    private Color color2 = new Color(0x262d3d);
-    private Color color3 = new Color(0x262d3d);
+    private Color color_1 = new Color(0x666f7f);  //color gris mitad arriba del boton 
+    private Color color_2 = new Color(0x262d3d);  //color gris oscuro mitad abajo del boton 
+    private Color color_3 = new Color(0x038cfc);  //color celeste atras del boton  
     
      public MiBoton(){
          super("Vacio");
@@ -33,8 +33,6 @@ public class MiBoton extends JButton {
         super(b);
                
      setFont(new Font(Ventana.FUENTE_BOTON,Font.BOLD ,Ventana.TAMANIO_FUENTE_BOTON));
-//       setForeground(Ventana.COLOR_FUENTE_BOTON);
-//      setBackground(Ventana.COLOR_FONDO_BOTON);
         
         setOpaque(false);
         setContentAreaFilled(false);
@@ -44,37 +42,38 @@ public class MiBoton extends JButton {
         setBorderPainted(false);
          
     }
-        protected void paintComponent(Graphics g) {
+    @Override
+   protected void paintComponent(Graphics g) {
         Color c1,c2,c3;
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
           RenderingHints.VALUE_ANTIALIAS_OFF);
         
-           ButtonModel m = getModel();
+           ButtonModel modelo = getModel();
 
          Paint oldPaint = g2.getPaint();
-        if (m.isArmed()){
-           c2=color1.darker();
-           c1=color2.darker();
-           c3=color3;
+        if (modelo.isArmed()){        //si el modelo esta armado
+           c2=color_1.darker();  // lo hace mas oscuro
+           c1=color_2.darker(); //lo hace mas oscuro
+           c3=color_3;
         }else{
-           c1=color1.darker();
-           c2=color2.darker();
-           c3=color3.brighter();
+           c1=color_1.darker();     //lo hace mas oscuro
+           c2=color_2.darker();    //lo hace mas oscuro
+           c3=color_3.brighter(); //lo hace mas brillante
         }
-        if (!m.isEnabled()){
-           c2=color1.brighter();
-           c1=color2.brighter();
-           c3=color3.darker();
+        if (!modelo.isEnabled()){      //si el modelo esta desabilitado
+           c2=color_1.brighter(); //lo hace mas brillante
+           c1=color_2.brighter(); //lo hace mas brillante
+           c3=color_3.darker();  //lo hace mas oscuro
         }
          RoundRectangle2D.Float r2d = new RoundRectangle2D.Float(
                     0,0,getWidth(),getHeight()-1,20,20);
             g2.clip(r2d);
-            g2.setPaint(new GradientPaint(0.0f, 0.0f, c1,
-                    0.0f, getHeight(), c2));
-            g2.fillRect(0,0,getWidth(),getHeight());
+            g2.setPaint(new GradientPaint(0.0f, 0.0f, c1,  //PINTURA GRADIENTE
+                    0.0f, getHeight(), c2));            // OBTENER Altura
+            g2.fillRect(0,0,getWidth(),getHeight());   //  OBTENER ANCHO
 
-            g2.setStroke(new BasicStroke(4f));
+            g2.setStroke(new BasicStroke(4f));   //ESTABLECER TRAZADO BASICO
             g2.setPaint(new GradientPaint(0.0f, 0.0f, c3,
                     0.0f, getHeight(), c3));
             g2.drawRoundRect(0, 0, getWidth()-2 , getHeight() -2, 18, 18);
@@ -83,28 +82,28 @@ public class MiBoton extends JButton {
         super.paintComponent(g);
     }
 
-    public Color getColor1() {
-        return color1;
+    public Color getColor_1() {
+        return color_1;
     }
 
-    public void setColor1(Color color1) {
-        this.color1 = color1;
+    public void setColor_1(Color color1) {
+        this.color_1 = color1;
     }
 
-    public Color getColor2() {
-        return color2;
+    public Color getColor_2() {
+        return color_2;
     }
 
-    public void setColor2(Color color2) {
-        this.color2 = color2;
+    public void setColor_2(Color color2) {
+        this.color_2 = color2;
     }
 
-    public Color getColor3() {
-        return color3;
+    public Color getColor_3() {
+        return color_3;
     }
 
-    public void setColor3(Color color3) {
-        this.color3 = color3;
+    public void setColor_3(Color color3) {
+        this.color_3 = color3;
         }
   
 }

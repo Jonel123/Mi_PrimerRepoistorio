@@ -16,15 +16,14 @@ public class Ventana extends JFrame implements ActionListener{
     
     private Double Resp = 0D;
     private String Operacion = "";
+    
     static final int TAMANIO_FUENTE_TITULO=30;
     static final int TAMANIO_FUENTE_BOTON=13;
     static final Color COLOR_TITULO=new Color(0,0,0);
-    static final Color COLOR_FUENTE_BOTON=new Color(8,16,113);
-    static final Color COLOR_FONDO_BOTON=new Color(121,132,134);
-    static final Color COLOR_FONDO_BOTO=new Color(181,32,13);
+    static final Color COLOR_FONDO_PANEL=new Color(74, 136, 143);
     static final String FUENTE_TITULO = "Broadway";
     static final String FUENTE_BOTON = "arial black";
-    static final Color COLOR_FONDO_PANEL=new Color(74, 136, 143);
+   
       
        /*CREANDO PANEL*/
     private Mi_Panel Panel=new Mi_Panel();
@@ -33,7 +32,7 @@ public class Ventana extends JFrame implements ActionListener{
     private Mi_Label Titulo=new Mi_Label(" CALCULADORA",TAMANIO_FUENTE_TITULO);
    
     /*CREANDO PANTALLITA DE IMPRESION*/
-    private Mi_Pantalla Pantallita=new Mi_Pantalla("0");
+    private Mi_Pantalla Pantallita=new Mi_Pantalla("");
     
     /*CREANDO CALCULO*/
     private Calculadora calculo=new Calculadora();
@@ -67,37 +66,37 @@ public class Ventana extends JFrame implements ActionListener{
         private MiBoton Boton_Exponencial=new MiBoton("e");
           private MiBoton Boton_Minimizar=new MiBoton("MINIMIZAR");
             private MiBoton Boton_Cerrar=new MiBoton("CERRAR");
-             //private MiBoton Boton_MAXIM=new MiBoton("MAXMINIZAR");
+             //private MiBoton Boton_Maximizar=new MiBoton("MAXIMIZAR");
            
     
 public Ventana(){
      setUndecorated(true);
-      setBounds(490, 70, 345, 510);
-      setLayout(null);
-       setVisible(true);   //Hacer visible la ventana
-        setResizable(false); //hace Visible el expandir la ventana
-        setMinimumSize(new Dimension(345,510));
-            setMaximumSize(new Dimension(345, 510));
+      setBounds(800, 50, 345, 510);
+       setLayout(null);
+        setVisible(true);   //Hacer visible la ventana
+         setResizable(false); //hace Visible el expandir la ventana
+          setMinimumSize(new Dimension(345,510));
+           setMaximumSize(new Dimension(345, 510));
             setDefaultCloseOperation(Ventana.EXIT_ON_CLOSE);
-         
-          setLayout(new BorderLayout());
+             setLayout(new BorderLayout());
       }
 
  public void Propiedades_Ventana_Principal(){
           
             Panel.setLayout(null);
                         
-            add(Panel);     /*AGREGANDO PANEL A LA VENTANA*/
             
             /*AGRAGANDO OBJETOS DE TIPO TITULO Y PANTALLITA AL PANEL*/
              Panel.add(Titulo);
              Panel.add(Pantallita);
              
              Panel.setBackground(COLOR_FONDO_PANEL);
+           
              
              /*COORDENADAS Y TAMAÑO DE TITULO Y PANTALLITA*/
              Titulo.setBounds(30, 35, 310, 40);
              Pantallita.setBounds(10, 80, 325, 40);
+
        
              /*COORDENADAS Y TAMAÑO DE LOS BOTONES*/
             Boton1.setBounds(10, 355, 60, 65);
@@ -123,11 +122,11 @@ public Ventana(){
                 Boton_Pi.setBounds(10, 130, 65, 65);
                  Boton_Raiz.setBounds(140, 130, 65, 65);
                   Boton_Potencia.setBounds(270, 280, 65, 65);
-                   Boton_Factorial.setBounds(75, 130, 65, 65);    
-                    Boton_Exponencial.setBounds(205, 130, 65, 65);
-                    Boton_Minimizar.setBounds(115, 2, 125, 30);
-                    Boton_Cerrar.setBounds(240, 2, 100, 30);
-                    //Boton_MAXIM.setBounds(115, 2, 100, 30);
+                   Boton_Factorial.setBounds(205, 130, 65, 65);    
+                    Boton_Exponencial.setBounds(75, 130, 65, 65);
+                    Boton_Minimizar.setBounds(110, 1, 125, 30);
+                    Boton_Cerrar.setBounds(235, 1, 110, 30);
+                    //Boton_Maximizar.setBounds(115, 2, 100, 30);
             
        /*PONIENEDO EN ESCUCHA A LOS BOTONES NUMERICOS*/
         Boton1.addActionListener(this);
@@ -171,7 +170,7 @@ public Ventana(){
           Boton_Exponencial.addActionListener(this);
           Boton_Cerrar.addActionListener(this);
           Boton_Minimizar.addActionListener(this);
-          //Boton_MAXIM.addActionListener(this);
+          //Boton_Maximizar.addActionListener(this);
                    
           /*AGREGANDO BOTONES DE OPERACIONES AL PANEL*/  
           Panel.add(Boton_Signo);
@@ -191,7 +190,9 @@ public Ventana(){
                 Panel.add(Boton_Exponencial);
                 Panel.add(Boton_Minimizar);
                 Panel.add(Boton_Cerrar);
-                 //Panel.add(Boton_MAXIM);
+                 //Panel.add(Boton_Maximizar);
+                 
+                   add(Panel);     /*AGREGANDO PANEL A LA VENTANA*/
     }
 
     @Override
@@ -244,39 +245,45 @@ public Ventana(){
          
         if(Pulsado.equals(this.Boton_Raiz)){ 
             if(op!=false){
-                Pantallita.setText(String.valueOf(calculo.RaizCua(Double.parseDouble(Pantallita.getText()))));  
+                String cadena = calculo.RaizCua(Double.parseDouble(Pantallita.getText()));
+              if(cadena.equals("ERROR")){
+                    JOptionPane.showMessageDialog(null, "               ES UNA RAIZ IMAGINARIA."+"\n"+
+                                                     " POR FAVOR INGRESE NUMEROS POSITIVOS");
+                }else{
+                     Pantallita.setText(cadena);
+                }
             }else{
-                 JOptionPane.showMessageDialog(null, "ERROR, QUE DOMONIOS INGRESASTES "+""
-                                               + "\n"+"NO ES POSIBLE REALIZAR LA OPERACION");
+                 JOptionPane.showMessageDialog(null, "LOS DATOS INGRESADOS NO SON VALIDOS,"+""
+                                               + "\n"+"  POR FAVOR INGRESE DATOS NUMERICOS");
                  }
         }  
-        if(Pulsado.equals(this.Boton_Borrar)){ 
-            Pantallita.setText(calculo.BotonBorrar(Pantallita.getText()));  
+        
+        if(Pulsado.equals(this.Boton_Borrar)){   
+          Pantallita.setText(calculo.BotonBorrar(Pantallita.getText()));
          }
           
         if(Pulsado.equals(this.Boton_BorrarTodo)){
             Pantallita.setText(calculo.BotonBorrarTodo(Pantallita.getText())); 
-               Boton_Punto.setEnabled(true);
          }
           
         if (Pulsado.equals(this.Boton_Inversa)) {
-           if(op!=false){
+            if(op!=false){
                 String cadena = calculo.Inverso(Double.parseDouble(Pantallita.getText()));
                if (cadena.equals("ERR")) {
                    JOptionPane.showMessageDialog(null, "ERROR, NO EXISTE INVERSA DE CERO");
                 }else {
                       Pantallita.setText(cadena);
                       }
-            }else{
-                 JOptionPane.showMessageDialog(null, "ERROR, QUE DOMONIOS INGRESASTES "+""
-                                               + "\n"+"NO ES POSIBLE REALIZAR LA OPERACION");
+             }else{
+                 JOptionPane.showMessageDialog(null, "LOS DATOS INGRESADOS NO SON VALIDOS,"+""
+                                               + "\n"+"  POR FAVOR INGRESE DATOS NUMERICOS");
                  }
         }
         if(Pulsado.equals(this.Boton_Signo)){ 
-           if(op!=false){
-               Pantallita.setText(calculo.BotonSigno(Double.parseDouble(Pantallita.getText())));   
-            }else{
-                 JOptionPane.showMessageDialog(null, "ERROR, INGRESE NUMERO VALIDO");
+               if(op!=false){
+                  Pantallita.setText(calculo.BotonSigno(Double.parseDouble(Pantallita.getText())));   
+                }else{
+                    JOptionPane.showMessageDialog(null, "ERROR, INGRESE NUMERO VALIDO");
                  }
         }
         if (Pulsado.equals(this.Boton_Factorial)) {
@@ -287,25 +294,27 @@ public Ventana(){
                     JOptionPane.showMessageDialog(null, "ERROR, NO EXISTE FACTORIAL DE DECIMAL y/o NEGATIVOS");
                      }
             }else{
-                 JOptionPane.showMessageDialog(null, "ERROR, QUE DOMONIOS INGRESASTES "+""
-                                              + "\n"+"NO ES POSIBLE REALIZAR LA OPERACION");
+                 JOptionPane.showMessageDialog(null, "LOS DATOS INGRESADOS NO SON VALIDOS,"+""
+                                              + "\n"+"  POR FAVOR INGRESE DATOS NUMERICOS");
                  }
         }
         if (Pulsado.equals(this.Boton_Punto)) {
-           if(op!=false){
-               Pantallita.setText(calculo.Validar_Entrada(Pantallita.getText()+Boton_Punto.getText()));
-               Boton_Punto.setEnabled(false);
-            }else{
-                 JOptionPane.showMessageDialog(null, "ERROR, INGRESE NUMERO VALIDO");
-                 }
-           
+            String Cadena;           
+              Cadena=Pantallita.getText();
+            if (Cadena.length()<=0) {
+                Pantallita.setText("0."); 
+              }else{
+                 if (!calculo.ExistePunto(Pantallita.getText())) {
+                    Pantallita.setText(Pantallita.getText()+".");      
+                    }
+                }       
         }
         if (Pulsado.equals(this.Boton_Potencia)) {
-           if(op!=false){
-              Pantallita.setText(String.valueOf(calculo.CuadradoNumero(Double.parseDouble(Pantallita.getText()))));
-            }else{
-                 JOptionPane.showMessageDialog(null, "ERROR, QUE DOMONIOS INGRESASTES "+""
-                                                + "\n"+"NO ES POSIBLE REALIZAR LA OPERACION");
+               if(op!=false){
+                  Pantallita.setText(String.valueOf(calculo.CuadradoNumero(Double.parseDouble(Pantallita.getText()))));
+                 }else{
+                    JOptionPane.showMessageDialog(null, "LOS DATOS INGRESADOS NO SON VALIDOS,"+""
+                                                + "\n"+"  POR FAVOR INGRESE DATOS NUMERICOS");
                  }
         }
         if (Pulsado.equals(this.Boton_Pi)) {
@@ -313,60 +322,52 @@ public Ventana(){
         }
         
         if (Pulsado.equals(this.Boton_Exponencial)) {
-            Pantallita.setText(String.valueOf(Calculadora.Exponencial));
+            Pantallita.setText(String.valueOf(Calculadora.EXPONENCIAL));
         }
         
         if (Pulsado.equals(this.Boton_Restar)) {
                Operacion = "-";
-            if(op!=false){
-               Pantallita.setText((String.valueOf(calculo.Restar(Double.parseDouble(Pantallita.getText())))));
-               Pantallita.setText("0");
-               Boton_Punto.setEnabled(true);
-            }else{
-                 JOptionPane.showMessageDialog(null, "ERROR, QUE DOMONIOS INGRESASTES "+""
-                                              + "\n"+"NO ES POSIBLE REALIZAR LA OPERACION");
+                if(op!=false){ 
+                   Pantallita.setText((String.valueOf(calculo.Restar(Double.parseDouble(Pantallita.getText())))));
+                   Pantallita.setText(" ");
+                }else{
+                     JOptionPane.showMessageDialog(null, "LOS DATOS INGRESADOS NO SON VALIDOS,"+""
+                                              + "\n"+"  POR FAVOR INGRESE DATOS NUMERICOS");
                  }
         }
-        
-        if (Pulsado.equals(this.Boton_Sumar)) {
-               Operacion = "+";
-            if(op!=false){
-                Resp = ((calculo.Sumar(Double.parseDouble(Pantallita.getText()))));
-                Pantallita.setText("0");
-                Boton_Punto.setEnabled(true);
-            }else{
-                 JOptionPane.showMessageDialog(null, "ERROR, QUE DOMONIOS INGRESASTES "+""
-                                              + "\n"+"NO ES POSIBLE REALIZAR LA OPERACION");
+        if (Pulsado.equals(this.Boton_Sumar)) {  
+             Operacion = "+";
+                if(op!=false){ 
+                    Resp = (calculo.Multiplicar(Double.parseDouble(Pantallita.getText())));
+                    Pantallita.setText(" ");
+                }else{
+                    JOptionPane.showMessageDialog(null, "LOS DATOS INGRESADOS NO SON VALIDOS,"+""
+                                              + "\n"+"  POR FAVOR INGRESE DATOS NUMERICOS");
                  }
         }
-        
         if (Pulsado.equals(this.Boton_Multiplicar)) {
                Operacion = "X";
-            if(op!=false){
-                Resp = (calculo.Multiplicar(Double.parseDouble(Pantallita.getText())));
-                Pantallita.setText("0");
-                Boton_Punto.setEnabled(true);
-            }else{
-                 JOptionPane.showMessageDialog(null, "ERROR, QUE DOMONIOS INGRESASTES "+""
-                                              + "\n"+"NO ES POSIBLE REALIZAR LA OPERACION");
+               if(op!=false){
+                   Resp = (calculo.Multiplicar(Double.parseDouble(Pantallita.getText())));
+                   Pantallita.setText(" ");
+                 }else{
+                    JOptionPane.showMessageDialog(null, "LOS DATOS INGRESADOS NO SON VALIDOS,"+""
+                                              + "\n"+"  POR FAVOR INGRESE DATOS NUMERICOS");
                  }
         }
-        
         if (Pulsado.equals(this.Boton_Dividir)) {
                 Operacion = "/";
-            if(op!=false){  
-                Resp = (calculo.Dividir(Double.parseDouble(Pantallita.getText())));
-                Pantallita.setText("0");
-                Boton_Punto.setEnabled(true);
-            }else{
-                 JOptionPane.showMessageDialog(null, "ERROR, QUE DOMONIOS INGRESASTES "+""
-                                               + "\n"+"NO ES POSIBLE REALIZAR LA OPERACION");
+                 if(op!=false){  
+                     Resp = (calculo.Dividir(Double.parseDouble(Pantallita.getText()))); 
+                    Pantallita.setText(" ");
+                }else{
+                    JOptionPane.showMessageDialog(null, "LOS DATOS INGRESADOS NO SON VALIDOS,"+""
+                                               + "\n"+"  POR FAVOR INGRESE DATOS NUMERICOS");
                  }
-        }
-             
+        }     
         if (Pulsado.equals(this.Boton_Igual)) { 
-          if(op!=false){
-            if (Operacion.equals("+")) {
+           if(op!=false){
+             if (Operacion.equals("+")) {
                 Resp = calculo.Sumar(Double.parseDouble(Pantallita.getText()));
                 Pantallita.setText(String.valueOf(Resp));
                 calculo = new Calculadora();
@@ -383,7 +384,7 @@ public Ventana(){
                 Resp = calculo.Dividir(Double.parseDouble(Pantallita.getText()));
                  if (!(Double.isFinite(Resp))) {
                      JOptionPane.showMessageDialog(null, "ERROR, NO ES POSIBLE DIVIDIR ENTRE CERO");
-                     } else {
+                    } else {
                            Pantallita.setText(String.valueOf(Resp));
                             }
                       calculo = new Calculadora();
@@ -395,24 +396,22 @@ public Ventana(){
                 calculo = new Calculadora();
                 Operacion = "";
             }
-            Boton_Punto.setEnabled(true);
 
         }else{
              JOptionPane.showMessageDialog(null, "ERROR, INGRESE NUMERO VALIDO");
              }
-      }
-        
+        }
          if(Pulsado==Boton_Cerrar){
              System.exit(DO_NOTHING_ON_CLOSE);
            }
         if(Pulsado==Boton_Minimizar){
             setExtendedState(ICONIFIED);
            }
-//        if(Pulsado==Boton_MAXIM){
+//        if(Pulsado==Boton_Maximizar){
 //            setExtendedState(MAXIMIZED_BOTH);
 //           }
-    }
-   }
+      }
+     }
     
 }       
         
