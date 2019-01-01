@@ -13,29 +13,29 @@ import java.awt.event.*;
  * @author DIONER
  */
 public class Ventana extends JFrame implements ActionListener{
+   private String Signo;
+   private String Memoria_1;
+   private String Memoria_2;
     
-    private Double Resp = 0D;
-    private String Operacion = "";
-    
-    static final int TAMANIO_FUENTE_TITULO=30;
-    static final int TAMANIO_FUENTE_BOTON=13;
-    static final Color COLOR_TITULO=new Color(0,0,0);
-    static final Color COLOR_FONDO_PANEL=new Color(74, 136, 143);
-    static final String FUENTE_TITULO = "Broadway";
-    static final String FUENTE_BOTON = "arial black";
+    static final int TAMANIO_FUENTE_TITULO=30; //ESTABLECIENDO EL TAMAÑO DE LA LETRA DEL TITULO
+    static final int TAMANIO_FUENTE_BOTON=13; //ESTABLECIENDO EL TAMAÑO DE LA LETRA DE LOS BOTONES
+    static final Color COLOR_TITULO=new Color(0,0,0); //COLOR DE LA LETRA DEL TITULO (NEGRO)
+    static final Color COLOR_FONDO_PANEL=new Color(74, 136, 143); //COLOR DE FONDO DEL PANEL
+    static final String FUENTE_TITULO = "Broadway";  //TIPO DE LETRA DEL TITULO
+    static final String FUENTE_BOTON = "arial black"; //TIPO DE LETRA DE LOS BOTONES
    
       
        /*CREANDO PANEL*/
-    private Mi_Panel Panel=new Mi_Panel();
+    private final Mi_Panel Panel=new Mi_Panel();
      
       /*CREANDO TITULO*/
-    private Mi_Label Titulo=new Mi_Label(" CALCULADORA",TAMANIO_FUENTE_TITULO);
+    private final Mi_Label Titulo=new Mi_Label(" CALCULADORA",TAMANIO_FUENTE_TITULO);
    
     /*CREANDO PANTALLITA DE IMPRESION*/
-    private Mi_Pantalla Pantallita=new Mi_Pantalla("");
+    private final Mi_Pantalla Pantallita=new Mi_Pantalla("");
     
     /*CREANDO CALCULO*/
-    private Calculadora calculo=new Calculadora();
+    private final Calculadora calculo=new Calculadora();
     
     
     /*CREANDO BOTONES*/
@@ -66,31 +66,29 @@ public class Ventana extends JFrame implements ActionListener{
         private MiBoton Boton_Exponencial=new MiBoton("e");
           private MiBoton Boton_Minimizar=new MiBoton("MINIMIZAR");
             private MiBoton Boton_Cerrar=new MiBoton("CERRAR");
-             //private MiBoton Boton_Maximizar=new MiBoton("MAXIMIZAR");
            
     
 public Ventana(){
-     setUndecorated(true);
-      setBounds(800, 50, 345, 510);
-       setLayout(null);
-        setVisible(true);   //Hacer visible la ventana
-         setResizable(false); //hace Visible el expandir la ventana
-          setMinimumSize(new Dimension(345,510));
-           setMaximumSize(new Dimension(345, 510));
-            setDefaultCloseOperation(Ventana.EXIT_ON_CLOSE);
-             setLayout(new BorderLayout());
+     setUndecorated(true); //OCULTA LOS BOTONES CERRAR, MINIMIZAR Y AMPLIAR DE WINDOWS
+      setBounds(800, 50, 345, 510);//COORDENADAS DE LA VENTANA 
+        setVisible(true);   //HACE VISIBLE LA VENTANA
+         setResizable(false); //HACE VISIBLE EL EXPANDIR VENTANA
+           setMaximumSize(new Dimension(345, 510)); //TAMAÑO MAXIMO DE LA VENTANA
+            setMinimumSize(new Dimension(345,510)); //TAMAÑO MINIMO DE LA VENTANA
+             setDefaultCloseOperation(Ventana.EXIT_ON_CLOSE); // SALIR AL CIERRE DE LA VENTANA
+              setLayout(new BorderLayout()); // ESTABLECE EL BORDE DEL DISEÑO
       }
 
- public void Propiedades_Ventana_Principal(){
+ public void Propiedades_Ventana_Principal(){ //TODAS LAS PROPIEDADES EN LA VENTANA CALCULADORA
           
-            Panel.setLayout(null);
+            Panel.setLayout(null); //HACER NULLO PARA AGRAGRA LOS COMPPONENTES AL AL PANEL
                         
             
             /*AGRAGANDO OBJETOS DE TIPO TITULO Y PANTALLITA AL PANEL*/
              Panel.add(Titulo);
              Panel.add(Pantallita);
              
-             Panel.setBackground(COLOR_FONDO_PANEL);
+             Panel.setBackground(COLOR_FONDO_PANEL); //COLOR DE FONDO DEL PANEL
            
              
              /*COORDENADAS Y TAMAÑO DE TITULO Y PANTALLITA*/
@@ -126,7 +124,6 @@ public Ventana(){
                     Boton_Exponencial.setBounds(75, 130, 65, 65);
                     Boton_Minimizar.setBounds(110, 1, 125, 30);
                     Boton_Cerrar.setBounds(235, 1, 110, 30);
-                    //Boton_Maximizar.setBounds(115, 2, 100, 30);
             
        /*PONIENEDO EN ESCUCHA A LOS BOTONES NUMERICOS*/
         Boton1.addActionListener(this);
@@ -190,7 +187,6 @@ public Ventana(){
                 Panel.add(Boton_Exponencial);
                 Panel.add(Boton_Minimizar);
                 Panel.add(Boton_Cerrar);
-                 //Panel.add(Boton_Maximizar);
                  
                    add(Panel);     /*AGREGANDO PANEL A LA VENTANA*/
     }
@@ -198,218 +194,243 @@ public Ventana(){
     @Override
     public void actionPerformed(ActionEvent ae) {
          Object Pulsado=ae.getSource();
-         boolean op = calculo.Validar_Numero(Pantallita.getText());
-          boolean facto = calculo.Validar_Facto(Pantallita.getText());
+       boolean op = calculo.Validar_Numero(Pantallita.getText()); //CREANDO UN OBJETO DE TIPO BOOLEANO (VERDADERO/FALSO) PARA VALIDAR LA ENTRADA DE SOLO NUMEROS 
+       boolean facto = calculo.Validar_Facto(Pantallita.getText()); //CREANDO UN OBJETO DE TIPO BOOLEANO (VERDADERO/FALSO) PARA VALIDAR LA ENTARDA AL BOTON FACTORIAL
           
     if(Pulsado!= Boton_Cerrar || Pulsado!= Boton_Minimizar){
     
-        if(Pulsado.equals(this.Boton1)){
-             Pantallita.setText(calculo.Validar_Entrada(Pantallita.getText()+Boton1.getText())); 
+        if(Pulsado.equals(this.Boton1)){ //PULASADO AL BOTON 1 
+             Pantallita.setText(calculo.Validar_Entrada(Pantallita.getText()+Boton1.getText())); //IMPRIME EN LA PANTALLA DE LA CALCULADORA EL NUMERO 1
          }
          
-        if(Pulsado.equals(this.Boton2)){
-             Pantallita.setText(calculo.Validar_Entrada(Pantallita.getText()+Boton2.getText()));  
+        if(Pulsado.equals(this.Boton2)){ //PULASADO AL BOTON 2 
+             Pantallita.setText(calculo.Validar_Entrada(Pantallita.getText()+Boton2.getText())); //IMPRIME EN LA PANTALLA DE LA CALCULADORA EL NUMERO 2
          }
          
-        if(Pulsado.equals(this.Boton3)){
-             Pantallita.setText(calculo.Validar_Entrada(Pantallita.getText()+Boton3.getText()));  
+        if(Pulsado.equals(this.Boton3)){ //PULASADO AL BOTON 3
+             Pantallita.setText(calculo.Validar_Entrada(Pantallita.getText()+Boton3.getText())); //IMPRIME EN LA PANTALLA DE LA CALCULADORA EL NUMERO 3
          }
          
-        if(Pulsado.equals(this.Boton4)){
-             Pantallita.setText(calculo.Validar_Entrada(Pantallita.getText()+Boton4.getText())); 
+        if(Pulsado.equals(this.Boton4)){ //PULASADO AL BOTON 4
+             Pantallita.setText(calculo.Validar_Entrada(Pantallita.getText()+Boton4.getText())); //IMPRIME EN LA PANTALLA DE LA CALCULADORA EL NUMERO 4
          }
           
-        if(Pulsado.equals(this.Boton5)){
-             Pantallita.setText(calculo.Validar_Entrada(Pantallita.getText()+Boton5.getText()));  
+        if(Pulsado.equals(this.Boton5)){ //PULASADO AL BOTON 5
+             Pantallita.setText(calculo.Validar_Entrada(Pantallita.getText()+Boton5.getText())); //IMPRIME EN LA PANTALLA DE LA CALCULADORA EL NUMERO 5 
          }
          
-        if(Pulsado.equals(this.Boton6)){
-             Pantallita.setText(calculo.Validar_Entrada(Pantallita.getText()+Boton6.getText()));
+        if(Pulsado.equals(this.Boton6)){ //PULASADO AL BOTON 6 
+             Pantallita.setText(calculo.Validar_Entrada(Pantallita.getText()+Boton6.getText())); //IMPRIME EN LA PANTALLA DE LA CALCULADORA EL NUMERO 6
          }
          
-        if(Pulsado.equals(this.Boton7)){
-             Pantallita.setText(calculo.Validar_Entrada(Pantallita.getText()+Boton7.getText()));   
+        if(Pulsado.equals(this.Boton7)){ //PULASADO AL BOTON 7 
+             Pantallita.setText(calculo.Validar_Entrada(Pantallita.getText()+Boton7.getText())); //IMPRIME EN LA PANTALLA DE LA CALCULADORA EL NUMERO 7  
          }
          
-        if(Pulsado.equals(this.Boton8)){
-             Pantallita.setText(calculo.Validar_Entrada(Pantallita.getText()+Boton8.getText())); 
+        if(Pulsado.equals(this.Boton8)){ //PULASADO AL BOTON 8
+             Pantallita.setText(calculo.Validar_Entrada(Pantallita.getText()+Boton8.getText())); //IMPRIME EN LA PANTALLA DE LA CALCULADORA EL NUMERO 8
          }
          
-        if(Pulsado.equals(this.Boton9)){
-             Pantallita.setText(calculo.Validar_Entrada(Pantallita.getText()+Boton9.getText())); 
+        if(Pulsado.equals(this.Boton9)){ //PULASADO AL BOTON 9
+             Pantallita.setText(calculo.Validar_Entrada(Pantallita.getText()+Boton9.getText())); //IMPRIME EN LA PANTALLA DE LA CALCULADORA EL NUMERO 9
          }
          
-        if(Pulsado.equals(this.Boton0)){
-             Pantallita.setText(calculo.Validar_Entrada(Pantallita.getText()+Boton0.getText()));   
+        if(Pulsado.equals(this.Boton0)){ //PULASADO AL BOTON 0
+             Pantallita.setText(calculo.Validar_Entrada(Pantallita.getText()+Boton0.getText())); //IMPRIME EN LA PANTALLA DE LA CALCULADORA EL NUMERO 0 
          }
          
-        if(Pulsado.equals(this.Boton_Raiz)){ 
-            if(op!=false){
-                String cadena = calculo.RaizCua(Double.parseDouble(Pantallita.getText()));
-              if(cadena.equals("ERROR")){
-                    JOptionPane.showMessageDialog(null, "               ES UNA RAIZ IMAGINARIA."+"\n"+
+        if(Pulsado.equals(this.Boton_Raiz)){ //PULSADO AL BOTON RAIZ
+            if(Pantallita.getText().equals("")){ //PANTALLA DE LA CALCULADORA VACIA
+                   Pantallita.setText("");  //IMPRIME VACIO EN LA PANTALLA DE LA CALCULADORA
+               }else{ //SINO SE REALIZARA LAS OPERCIONES
+            if(op!=false){ //SI LA ENTRADA DE DATOS ES DE TIPO NUMERICO
+                 String cadena = calculo.RaizCua(Double.parseDouble(Pantallita.getText()));//SE REALIZA LA OPERACION
+                  if(cadena.equals("ERROR")){ //SI LA ENTRADA DE DATOS ES NEGATIVO DEVUELVE UN MENSAJE
+                          JOptionPane.showMessageDialog(null, "               ES UNA RAIZ IMAGINARIA."+"\n"+
                                                      " POR FAVOR INGRESE NUMEROS POSITIVOS");
-                }else{
-                     Pantallita.setText(cadena);
-                }
-            }else{
+                         }else{ //SINO IMPRIME EL RESULTADO CORRECTAMENTE EN LA PANTALLA DE LA CALCULADORA
+                              Pantallita.setText(cadena);
+                              }
+            }else{  //SI LA ENTRADA DE DATOS ES DE TIPO CARACTERES DEVUELVE UN MENSAJE 
                  JOptionPane.showMessageDialog(null, "LOS DATOS INGRESADOS NO SON VALIDOS,"+""
                                                + "\n"+"  POR FAVOR INGRESE DATOS NUMERICOS");
                  }
-        }  
+           }  
+        }
         
-        if(Pulsado.equals(this.Boton_Borrar)){   
-          Pantallita.setText(calculo.BotonBorrar(Pantallita.getText()));
+        if(Pulsado.equals(this.Boton_Borrar)){ //PULSADO AL BOTON BORRAR  
+          Pantallita.setText(calculo.BotonBorrar(Pantallita.getText())); //BORRA LA PANTALLA DE LA CLACULADORA DE MANERA DESCENDENTEMENTE
          }
           
-        if(Pulsado.equals(this.Boton_BorrarTodo)){
-            Pantallita.setText(calculo.BotonBorrarTodo(Pantallita.getText())); 
+        if(Pulsado.equals(this.Boton_BorrarTodo)){ //PULSADO AL BOTON BORRAR TODO
+            Pantallita.setText(calculo.BotonBorrarTodo(Pantallita.getText())); //BORRA TODA LA PANTALLA DE UN SOLO PULSADO
          }
           
-        if (Pulsado.equals(this.Boton_Inversa)) {
-            if(op!=false){
-                String cadena = calculo.Inverso(Double.parseDouble(Pantallita.getText()));
-               if (cadena.equals("ERR")) {
-                   JOptionPane.showMessageDialog(null, "ERROR, NO EXISTE INVERSA DE CERO");
-                }else {
-                      Pantallita.setText(cadena);
-                      }
-             }else{
-                 JOptionPane.showMessageDialog(null, "LOS DATOS INGRESADOS NO SON VALIDOS,"+""
+        if (Pulsado.equals(this.Boton_Inversa)) { //PULSADO AL BOTON INVERSA (1/n)
+            if(Pantallita.getText().equals("")){ //PANTALLA DE LA CALCULADORA VACIA
+                   Pantallita.setText("");  //IMPRIME VACIO EN LA PANTALLA DE LA CALCULADORA
+               }else{ //SINO SE REALIZA LAS OPERACIONES
+                  if(op!=false){ //SI LA ENTRADA DE DATOS ES DE TIPO NUMERICO
+                         String cadena = calculo.Inverso(Double.parseDouble(Pantallita.getText())); //SE REALIZA LA OPERACION
+                        if (cadena.equals("ERR")) { //SI LA ENTRADA DE DATOS ES CERO DEVUELVE UN MENSAJE
+                           JOptionPane.showMessageDialog(null, "ERROR, NO EXISTE INVERSA DE CERO");
+                          }else { //SINO IMPRIME EL RESULTADO CORRECTAMENTE EN LA PANTALLA DE LA CALCULADORA
+                               Pantallita.setText(cadena);
+                               }
+                    }else{//SI LA ENTRADA DE DATOS ES DE TIPO CARACTERES DEVUELVE UN MENSAJE 
+                        JOptionPane.showMessageDialog(null, "LOS DATOS INGRESADOS NO SON VALIDOS,"+""
                                                + "\n"+"  POR FAVOR INGRESE DATOS NUMERICOS");
                  }
+            }
         }
-        if(Pulsado.equals(this.Boton_Signo)){ 
-               if(op!=false){
-                  Pantallita.setText(calculo.BotonSigno(Double.parseDouble(Pantallita.getText())));   
-                }else{
-                    JOptionPane.showMessageDialog(null, "ERROR, INGRESE NUMERO VALIDO");
-                 }
+        if(Pulsado.equals(this.Boton_Signo)){ //PULSADO AL BOTON SIGNO (±)
+            if(Pantallita.getText().equals("")){ //PANTALLA DE LA CALCULADORA VACIA
+                Pantallita.setText(""); //IMPRIME VACIO EN LA PANTALLA DE LA CALCULADORA
+                }else{ //SINO SE REALIZA LAS OPERACIONES
+                   if(op!=false){ //SI LA ENTRADA DE DATOS ES DE TIPO NUMERICO
+                       Pantallita.setText(calculo.BotonSigno(Double.parseDouble(Pantallita.getText()))); //SE REALIZA LA OPERACION   
+                   }else{ //SI LA ENTRADA DE DATOS ES DE TIPO CARACTERES DEVUELVE UN MENSAJE 
+                      JOptionPane.showMessageDialog(null, "ERROR, INGRESE NUMERO VALIDO");
+                       }
+                }
         }
-        if (Pulsado.equals(this.Boton_Factorial)) {
-            if(op!=false){
-                if(facto!=false){
-                Pantallita.setText(String.valueOf(calculo.BotonFactorial(Integer.parseInt(Pantallita.getText()))));
-                }else{ 
-                    JOptionPane.showMessageDialog(null, "ERROR, NO EXISTE FACTORIAL DE DECIMAL y/o NEGATIVOS");
-                     }
-            }else{
+        if (Pulsado.equals(this.Boton_Factorial)) { //PULSADO AL BOTON FACTORIAL (n!)
+            if(Pantallita.getText().equals("")){ //PANTALLA DE LA CALCULADORA VACIA
+                Pantallita.setText(""); //IMPRIME VACIO EN LA PANTALLA DE LA CALCULADORA
+               }else{ //SINO SE REALIZA LAS OPERCIONES
+                 if(op!=false){ //SI LA ENTRADA DE DATOS ES DE TIPO NUMERICO
+                    if(facto!=false){ //SI LA ENTRADA DE DATOS ES DE NUMEROS ENTEROS Y POSITIVOS
+                        Pantallita.setText(String.valueOf(calculo.BotonFactorial(Integer.parseInt(Pantallita.getText())))); //SE REALIZA LA OPERACION
+                       }else{ //SI LA ENTRADA DE DATOS ES DE TIPO NEGATIVOS Y DECIMALES DEVUELVE UN MENSAJE
+                          JOptionPane.showMessageDialog(null, "ERROR, NO EXISTE FACTORIAL DE DECIMAL y/o NEGATIVOS");
+                           }
+                }else{ //SI LA ENTRADA DE DATOS ES DE TIPO CARACTERES DEVUELVE UN MENSAJE
                  JOptionPane.showMessageDialog(null, "LOS DATOS INGRESADOS NO SON VALIDOS,"+""
                                               + "\n"+"  POR FAVOR INGRESE DATOS NUMERICOS");
-                 }
+                     }
+                }
         }
-        if (Pulsado.equals(this.Boton_Punto)) {
+        if (Pulsado.equals(this.Boton_Punto)) { //PULSADO AL BOTON PUNTO 
             String Cadena;           
               Cadena=Pantallita.getText();
-            if (Cadena.length()<=0) {
-                Pantallita.setText("0."); 
-              }else{
-                 if (!calculo.ExistePunto(Pantallita.getText())) {
-                    Pantallita.setText(Pantallita.getText()+".");      
+            if (Cadena.length()<=0) { //SI LA CADENA DE DATOS ES MENOR O IGUAL ACERO
+                Pantallita.setText("0."); //SE IMPRIME EL CERO Y EL PUNTO DECIMAL EN LA PANTALLA DE LA CALCULADORA
+              }else{ //SI LA CADENA ES MAYOR A CERO 
+                 if (!calculo.ExistePunto(Pantallita.getText())) { //SI NO EXITE PUNTO EN LA CADENA
+                    Pantallita.setText(Pantallita.getText()+".");  //SE IMPRIME UN PUNTO EN LA CADENA    
                     }
                 }       
         }
-        if (Pulsado.equals(this.Boton_Potencia)) {
-               if(op!=false){
-                  Pantallita.setText(String.valueOf(calculo.CuadradoNumero(Double.parseDouble(Pantallita.getText()))));
-                 }else{
-                    JOptionPane.showMessageDialog(null, "LOS DATOS INGRESADOS NO SON VALIDOS,"+""
+        if (Pulsado.equals(this.Boton_Potencia)) { //PULSADO AL BOTON POTENCIA (n^2)
+            if(Pantallita.getText().equals("")){ //PANTALLA DE LA CALCULADORA VACIA
+                   Pantallita.setText(""); //IMPRIME VACIO EN LA PANTALLA DE LA CALCULADORA
+               }else{ //SINO SE REALIZA LAS OPERCIONES
+                  if(op!=false){ //SI LA ENTRADA DE DATOS ES DE TIPO NUMERICO
+                     Pantallita.setText(String.valueOf(calculo.CuadradoNumero(Double.parseDouble(Pantallita.getText())))); // SE REALIZA LA OPERACION
+                     }else{ //SI LA ENTRADA DE DATOS ES DE TIPO CARACTERES DEVUELVE UN MENSAJE
+                        JOptionPane.showMessageDialog(null, "LOS DATOS INGRESADOS NO SON VALIDOS,"+""
                                                 + "\n"+"  POR FAVOR INGRESE DATOS NUMERICOS");
-                 }
+                         }
+                    }
         }
-        if (Pulsado.equals(this.Boton_Pi)) {
-            Pantallita.setText(String.valueOf(Calculadora.P_I));
-        }
-        
-        if (Pulsado.equals(this.Boton_Exponencial)) {
-            Pantallita.setText(String.valueOf(Calculadora.EXPONENCIAL));
+        if (Pulsado.equals(this.Boton_Pi)) { //PULSADO AL BOTON PI
+            Pantallita.setText(String.valueOf(Calculadora.P_I)); //IMPRIME EN LA PANTALLA DE LA CALCULDAORA EL VALOR DE PI
         }
         
-        if (Pulsado.equals(this.Boton_Restar)) {
-               Operacion = "-";
-                if(op!=false){ 
-                   Pantallita.setText((String.valueOf(calculo.Restar(Double.parseDouble(Pantallita.getText())))));
-                   Pantallita.setText(" ");
-                }else{
-                     JOptionPane.showMessageDialog(null, "LOS DATOS INGRESADOS NO SON VALIDOS,"+""
+        if (Pulsado.equals(this.Boton_Exponencial)) { //PULSADO AL BOTON EXPONENCIAL (e)
+            Pantallita.setText(String.valueOf(Calculadora.EXPONENCIAL)); //IMPRIME EN LA PANTALLA DE LA CALCULDAORA EL VALOR DE EXPONENCIAL
+        }
+        
+        if (Pulsado.equals(this.Boton_Restar)) { //PULSADO AL BOTON RESTA
+               if(Pantallita.getText().equals("")){ //PANTALLA DE LA CALCULADORA VACIA
+                    Pantallita.setText("");  //IMPRIME VACIO EN LA PANTALLA DE LA CALCULADORA
+                  }else{ //SINO SE REALIZA LAS OPERCIONES
+                    if(op!=false){  //SI LA ENTRADA DE DATOS ES DE TIPO NUMERICO  SE REALIZA LA OPERACION RESTA
+                      Memoria_1=Pantallita.getText();
+                      Signo="-";
+                      Pantallita.setText("");
+                    }else{ //SI LA ENTRADA DE DATOS ES DE TIPO CARACTERES DEVUELVE UN MENSAJE
+                        JOptionPane.showMessageDialog(null, "LOS DATOS INGRESADOS NO SON VALIDOS,"+""
                                               + "\n"+"  POR FAVOR INGRESE DATOS NUMERICOS");
+                        }
+                   }
+        }
+        if (Pulsado.equals(this.Boton_Sumar)) { //PULSADO AL BOTON SUMA
+             if(Pantallita.getText().equals("")){ //PANTALLA DE LA CALCULADORA VACIA
+                   Pantallita.setText("");  //IMPRIME VACIO EN LA PANTALLA DE LA CALCULADORA
+                 }else{ //SINO SE REALIZA LAS OPERCIONES
+                    if(op!=false){  //SI LA ENTRADA DE DATOS ES DE TIPO NUMERICO  SE REALIZA LA OPERACION SUMA
+                        Memoria_1=Pantallita.getText();
+                        Signo="+";
+                        Pantallita.setText("");
+                    }else{ //SI LA ENTRADA DE DATOS ES DE TIPO CARACTERES DEVUELVE UN MENSAJE
+                        JOptionPane.showMessageDialog(null, "LOS DATOS INGRESADOS NO SON VALIDOS,"+""
+                                              + "\n"+"  POR FAVOR INGRESE DATOS NUMERICOS");
+                        }
                  }
         }
-        if (Pulsado.equals(this.Boton_Sumar)) {  
-             Operacion = "+";
-                if(op!=false){ 
-                    Resp = (calculo.Multiplicar(Double.parseDouble(Pantallita.getText())));
-                    Pantallita.setText(" ");
-                }else{
-                    JOptionPane.showMessageDialog(null, "LOS DATOS INGRESADOS NO SON VALIDOS,"+""
+        if (Pulsado.equals(this.Boton_Multiplicar)) { //PULSADO AL BOTON MULTIPICACION
+            if(Pantallita.getText().equals("")){ //PANTALLA DE LA CALCULADORA VACIA
+                 Pantallita.setText("");  //IMPRIME VACIO EN LA PANTALLA DE LA CALCULADORA
+               }else{ //SINO SE REALIZA LAS OPERCIONES
+                 if(op!=false){  //SI LA ENTRADA DE DATOS ES DE TIPO NUMERICO  SE REALIZA LA OPERACION MULTIPLICACION
+                      Memoria_1=Pantallita.getText();
+                      Signo="X";
+                      Pantallita.setText("");
+                    }else{ //SI LA ENTRADA DE DATOS ES DE TIPO CARACTERES DEVUELVE UN MENSAJE
+                         JOptionPane.showMessageDialog(null, "LOS DATOS INGRESADOS NO SON VALIDOS,"+""
                                               + "\n"+"  POR FAVOR INGRESE DATOS NUMERICOS");
-                 }
+                             }
+               }
         }
-        if (Pulsado.equals(this.Boton_Multiplicar)) {
-               Operacion = "X";
-               if(op!=false){
-                   Resp = (calculo.Multiplicar(Double.parseDouble(Pantallita.getText())));
-                   Pantallita.setText(" ");
-                 }else{
-                    JOptionPane.showMessageDialog(null, "LOS DATOS INGRESADOS NO SON VALIDOS,"+""
-                                              + "\n"+"  POR FAVOR INGRESE DATOS NUMERICOS");
-                 }
-        }
-        if (Pulsado.equals(this.Boton_Dividir)) {
-                Operacion = "/";
-                 if(op!=false){  
-                     Resp = (calculo.Dividir(Double.parseDouble(Pantallita.getText()))); 
-                    Pantallita.setText(" ");
-                }else{
+        if (Pulsado.equals(this.Boton_Dividir)) { //PULSADO AL BOTON DIVISION
+            if(Pantallita.getText().equals("")){ //PANTALLA DE LA CALCULADORA VACIA
+                 Pantallita.setText("");  //IMPRIME VACIO EN LA PANTALLA DE LA CALCULADORA
+               }else{ //SINO SE REALIZA LAS OPERCIONES
+                 if(op!=false){  //SI LA ENTRADA DE DATOS ES DE TIPO NUMERICO  SE REALIZA LA OPERACION DIVISION
+                    Memoria_1=Pantallita.getText();
+                    Signo="/";
+                    Pantallita.setText("");
+                }else{ //SI LA ENTRADA DE DATOS ES DE TIPO CARACTERES DEVUELVE UN MENSAJE
                     JOptionPane.showMessageDialog(null, "LOS DATOS INGRESADOS NO SON VALIDOS,"+""
                                                + "\n"+"  POR FAVOR INGRESE DATOS NUMERICOS");
-                 }
-        }     
-        if (Pulsado.equals(this.Boton_Igual)) { 
-           if(op!=false){
-             if (Operacion.equals("+")) {
-                Resp = calculo.Sumar(Double.parseDouble(Pantallita.getText()));
-                Pantallita.setText(String.valueOf(Resp));
-                calculo = new Calculadora();
-                Operacion = ""; 
-            } 
-            
-            if (Operacion.equals("-")) {
-                Resp = calculo.Restar(Double.parseDouble(Pantallita.getText()));
-                Pantallita.setText(String.valueOf(Resp));
-                calculo = new Calculadora();
-                Operacion ="";
-            }
-            if (Operacion.equals("/")) {
-                Resp = calculo.Dividir(Double.parseDouble(Pantallita.getText()));
-                 if (!(Double.isFinite(Resp))) {
-                     JOptionPane.showMessageDialog(null, "ERROR, NO ES POSIBLE DIVIDIR ENTRE CERO");
-                    } else {
-                           Pantallita.setText(String.valueOf(Resp));
-                            }
-                      calculo = new Calculadora();
-                      Operacion = "";            
-            }
-            if (Operacion.equals("X")) {
-                Resp = calculo.Multiplicar(Double.parseDouble(Pantallita.getText()));
-                Pantallita.setText(String.valueOf(Resp));
-                calculo = new Calculadora();
-                Operacion = "";
-            }
-
-        }else{
-             JOptionPane.showMessageDialog(null, "ERROR, INGRESE NUMERO VALIDO");
-             }
+                    }
+            }  
         }
-         if(Pulsado==Boton_Cerrar){
-             System.exit(DO_NOTHING_ON_CLOSE);
+        
+        if (Pulsado.equals(this.Boton_Igual)) { //PULSADO AL BOTON IGUAL (=)
+           if(Pantallita.getText().equals("")){ //PANTALLA DE LA CALCULADORA VACIA
+              Pantallita.setText("");  //IMPRIME VACIO EN LA PANTALLA DE LA CALCULADORA
+             }else{ //SINO SE REALIZA LAS OPERCIONES
+                 if(op!=false){ //SI LA ENTRADA DE DATOS ES DE TIPO NUMERICO  SE REALIZA LA OPRACION
+                   try{ //CAPTURA EL ERROR DE TIPO NULO
+                    String Resultado;
+                    Memoria_2=Pantallita.getText();
+                      if (!Memoria_2.equals("")) { //SI LA PANTALLA DE CALCULDORA CONTIENE DATOS
+                          Resultado=calculo.Operaciones(Memoria_1, Memoria_2, Signo); //SE REALIZA LA OPERACION
+                          if(Signo.equals("/")){//SI LA OPRACION ES DIVISION 
+                             if (Resultado.equals("Infinity")) {//SI EL RESULTADO DE LA DIVISION ES INFINITO DEVUELVE UN MESAJE
+                                JOptionPane.showMessageDialog(null, "ERROR, NO ES POSIBLE DIVIDIR ENTRE CERO");
+                                    Resultado="0";
+                                  }  
+                              }
+                              Pantallita.setText(Resultado);//IMPRIME EL RESULTADO EN LA PANTALLA DE LA CALCULADORA
+                           }
+                   }catch(NullPointerException ex){ //CAPTURA EL ERROR DE NULO Y IMPRIME VACIO EN LA PANTALLA DE LA CALCULADORA
+                          Pantallita.setText("");
+                         }
+               }else{  //SI LA ENTRADA DE DATOS ES DE TIPO CARACTERES DEVUELVE UN MENSAJE
+                    JOptionPane.showMessageDialog(null, "ERROR, INGRESE NUMERO VALIDO");
+                    }
+            }
+        }
+        
+        if(Pulsado==Boton_Cerrar){ //PULSADO AL BOTON CERRAR 
+             System.exit(DO_NOTHING_ON_CLOSE);// SE CIERRA LA VENTANA CALCULADORA
            }
-        if(Pulsado==Boton_Minimizar){
-            setExtendedState(ICONIFIED);
+        if(Pulsado==Boton_Minimizar){//PULSADO AL BOTON MINIMIZAR
+            setExtendedState(ICONIFIED); //SE MINIMIZA LA VENTANA CALCULADORA
            }
-//        if(Pulsado==Boton_Maximizar){
-//            setExtendedState(MAXIMIZED_BOTH);
-//           }
       }
      }
     

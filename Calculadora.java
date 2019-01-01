@@ -8,73 +8,42 @@ package Calculadora;
 
 import static java.lang.Math.PI;
 import static java.lang.Math.E;
-import java.math.BigDecimal;
 import java.math.BigInteger;
 /**
  *
  * @author DIONER
  */
-public class Calculadora {
-   private Double Memoria1; 
+public class Calculadora { 
     public static final Double P_I=PI;
     public static final Double EXPONENCIAL=E;
 
-    public Calculadora() {
-        this.Memoria1=0.0;
-     
-    }
-
-    public Calculadora(Double Memoria1) {
-        this.Memoria1 = Memoria1;
-    }
-
-    public Double getMemoria1() {
-        return Memoria1;
-    }
-
-    public void setMemoria1(Double Memoria1) {
-        this.Memoria1 = Memoria1;
-    }
-
-    public Double Restar(Double Memoria1){
-         this.Memoria1=Memoria1-this.Memoria1;
-        return this.Memoria1*-1D;
-    }
-    
-    public Double Sumar(Double Memoria1){
-        this.Memoria1=Memoria1+this.Memoria1;
-        return this.Memoria1;
-    }
-    
-    public Double Multiplicar(Double Memoria1){
-         if(this.Memoria1 == 0){
-            this.Memoria1 = 1.0;
+    public  String Operaciones(String Memoria_1, String Memoria_2, String Signo){ //METODO PARA HACER LAS OPERACIONES ARITMETICAS
+       Double Resultado=0D;
+       String Respuesta;
+        if (Signo.equals("-")) {
+            Resultado=Double.parseDouble(Memoria_1)-Double.parseDouble(Memoria_2); 
         }
-         this.Memoria1=Memoria1*this.Memoria1;
-        return this.Memoria1;
-    }
+        if (Signo.equals("+")) {
+            Resultado=Double.parseDouble(Memoria_1)+Double.parseDouble(Memoria_2); 
+        }
+         if (Signo.equals("X")) {
+            Resultado=Double.parseDouble(Memoria_1)*Double.parseDouble(Memoria_2); 
+        }
+          if (Signo.equals("/")) {
+            Resultado=Double.parseDouble(Memoria_1)/Double.parseDouble(Memoria_2);             
+        }
+          Respuesta=Resultado.toString();
+          return Respuesta;
+   }
     
-   public Double Dividir(Double Memoria_1){
-      
-           
-           if(this.Memoria1==0){
-               this.Memoria1=1D;
-              }         
-            this.Memoria1=Memoria_1/this.Memoria1;
-             if (Memoria_1==0) {
-                     this.Memoria1=0D;
-                    }
-             return 1/this.Memoria1;
-    }
-    
-   public String Validar_Entrada(String entrada){
+   public String Validar_Entrada(String entrada){ //METODO VALIDAR ENTRADA CONCATENA LA ENTRADA EN LA PANTALLA DE LA CALCULADORA
        if(entrada.charAt(0)=='0'){
            entrada = entrada.substring(0, entrada.length());                 
        }
        return entrada;
    }
    
-   public String RaizCua(Double numero){
+   public String RaizCua(Double numero){ //METODO PARA PARA SACAR LA RAIZ CUADRADA DE UN  NUMERO
        String Raiz;
        if (numero>=0) {      
             Raiz=String.valueOf(Math.sqrt(numero));
@@ -85,7 +54,7 @@ public class Calculadora {
        
    }
     
-   public String BotonBorrar(String cadena){
+   public String BotonBorrar(String cadena){ //METODO PARA BORRAR LA PANTALLA DE LA CALCULADORA DE MANERA DESCENDENTE
           String Cadena;
               Cadena=cadena;
            if (Cadena.length()>0) {
@@ -95,11 +64,12 @@ public class Calculadora {
            return Cadena;
    }
    
-   public String BotonBorrarTodo(String Cadena){
+   public String BotonBorrarTodo(String Cadena){  //METODO PARA BORRAR TODA LA PANTALLA DE LA CALCULADORA
        Cadena = "";
        return Cadena;
    }
-   public String Inverso(Double numero){
+   
+   public String Inverso(Double numero){ //METODO PARA SACAR LA INVERSA DE UN NUMERO
       String invertido="";
        if(numero!=0){
            invertido=String.valueOf(1/numero);
@@ -108,19 +78,19 @@ public class Calculadora {
        }
        return invertido;
    }
-    public Double CuadradoNumero(Double numero){
+    public Double CuadradoNumero(Double numero){ //METODO PARA ELEVAR AL CUADRADO A UN NUMERO
        Double cuadrado=numero*numero;
        return cuadrado;
    }
     
-   public String BotonSigno(Double numero){
+   public String BotonSigno(Double numero){ //METODO PARA PARA PONER SIGNO A UN NUMERO
        Double Cambio=-1D;
        Cambio=numero*Cambio;
        
        return String.valueOf(Cambio);
    }
    
-   public static boolean ExistePunto(String cadena){
+   public boolean ExistePunto(String cadena){ //METODO PARA COLOCAR UN PUNTO DECIMAL AL NUMERO INGRESADO 
         boolean Resultado;
         Resultado=false;
         for (int i = 0; i < cadena.length(); i++) {
@@ -132,8 +102,8 @@ public class Calculadora {
         return Resultado;
     }
    
-   public String BotonFactorial(int numero){
-     BigInteger resp=new BigInteger("1");
+   public String BotonFactorial(int numero){ //METODO PARA SACRA EL FACTORIAL DE UN NUMERO INGRESADO
+     BigInteger resp=new BigInteger("1");    //BIGINTEGER PARA HACER LAS OPERACIONES CON NUMEROS GRANDES 
        for (int i = 1; i <= numero; i++) {
          resp=resp.multiply(new BigInteger(Integer.toString(i)));  
        }
@@ -141,7 +111,7 @@ public class Calculadora {
 
        
    }
-   public boolean Validar_Numero(String Cadena){
+   public boolean Validar_Numero(String Cadena){  //METODO PARA VALIDAR LA ENTRADA DE SOLO NUMEROS DECIMALES Y NO CARACTERES
         Double num;
        try {  
            num = Double.parseDouble(Cadena);
@@ -152,7 +122,7 @@ public class Calculadora {
               }
    }
    
-      public boolean Validar_Facto(String Cadena){
+      public boolean Validar_Facto(String Cadena){ //METODO PARA VALIDAR LA ENTRADA DE SOLO NUMEROS ENTEROS Y NO CARACTERES
        int num;
        try {  
            num = Integer.parseInt(Cadena);
