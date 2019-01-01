@@ -26,9 +26,9 @@ public class Mi_Panel extends JPanel {
     
     public Mi_Panel(LayoutManager layout){
         super(layout);
+       
         
     }
-     
 //    @Override
 //    public void paint(Graphics g){
 //        g.drawImage(image, 0, 0, getWidth(), getHeight(), this);

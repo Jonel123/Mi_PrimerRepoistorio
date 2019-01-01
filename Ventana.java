@@ -31,7 +31,7 @@ public class Ventana extends JFrame implements ActionListener{
       /*CREANDO TITULO*/
     private final Mi_Label Titulo=new Mi_Label(" CALCULADORA",TAMANIO_FUENTE_TITULO);
    
-    /*CREANDO PANTALLITA DE IMPRESION*/
+    /*CREANDO PANTALLITA PARA IMPRESION*/
     private final Mi_Pantalla Pantallita=new Mi_Pantalla("");
     
     /*CREANDO CALCULO*/
@@ -70,9 +70,9 @@ public class Ventana extends JFrame implements ActionListener{
     
 public Ventana(){
      setUndecorated(true); //OCULTA LOS BOTONES CERRAR, MINIMIZAR Y AMPLIAR DE WINDOWS
-      setBounds(800, 50, 345, 510);//COORDENADAS DE LA VENTANA 
+      setBounds(800, 50, 345, 510);//COORDENADAS Y TAMAÑO DE LA VENTANA 
         setVisible(true);   //HACE VISIBLE LA VENTANA
-         setResizable(false); //HACE VISIBLE EL EXPANDIR VENTANA
+         setResizable(false); //OCULTA LA VISTA AL EXPANDIR VENTANA
            setMaximumSize(new Dimension(345, 510)); //TAMAÑO MAXIMO DE LA VENTANA
             setMinimumSize(new Dimension(345,510)); //TAMAÑO MINIMO DE LA VENTANA
              setDefaultCloseOperation(Ventana.EXIT_ON_CLOSE); // SALIR AL CIERRE DE LA VENTANA
@@ -81,15 +81,13 @@ public Ventana(){
 
  public void Propiedades_Ventana_Principal(){ //TODAS LAS PROPIEDADES EN LA VENTANA CALCULADORA
           
-            Panel.setLayout(null); //HACER NULLO PARA AGRAGRA LOS COMPPONENTES AL AL PANEL
-                        
+            Panel.setLayout(null); //HACER NULLO PARA AGREGAR LOS COMPPONENTES AL AL PANEL                        
             
-            /*AGRAGANDO OBJETOS DE TIPO TITULO Y PANTALLITA AL PANEL*/
+            /*AGREGANDO OBJETOS DE TIPO TITULO Y PANTALLITA AL PANEL*/
              Panel.add(Titulo);
              Panel.add(Pantallita);
              
-             Panel.setBackground(COLOR_FONDO_PANEL); //COLOR DE FONDO DEL PANEL
-           
+             Panel.setBackground(COLOR_FONDO_PANEL); //COLOR DE FONDO DEL PANEL           
              
              /*COORDENADAS Y TAMAÑO DE TITULO Y PANTALLITA*/
              Titulo.setBounds(30, 35, 310, 40);
@@ -399,16 +397,16 @@ public Ventana(){
         }
         
         if (Pulsado.equals(this.Boton_Igual)) { //PULSADO AL BOTON IGUAL (=)
-           if(Pantallita.getText().equals("")){ //PANTALLA DE LA CALCULADORA VACIA
+           String Resultado;
+            if(Pantallita.getText().equals("")){ //PANTALLA DE LA CALCULADORA VACIA
               Pantallita.setText("");  //IMPRIME VACIO EN LA PANTALLA DE LA CALCULADORA
              }else{ //SINO SE REALIZA LAS OPERCIONES
                  if(op!=false){ //SI LA ENTRADA DE DATOS ES DE TIPO NUMERICO  SE REALIZA LA OPRACION
                    try{ //CAPTURA EL ERROR DE TIPO NULO
-                    String Resultado;
                     Memoria_2=Pantallita.getText();
                       if (!Memoria_2.equals("")) { //SI LA PANTALLA DE CALCULDORA CONTIENE DATOS
                           Resultado=calculo.Operaciones(Memoria_1, Memoria_2, Signo); //SE REALIZA LA OPERACION
-                          if(Signo.equals("/")){//SI LA OPRACION ES DIVISION 
+                          if(Signo.equals("/")){//SI LA OPERACION ES DIVISION 
                              if (Resultado.equals("Infinity")) {//SI EL RESULTADO DE LA DIVISION ES INFINITO DEVUELVE UN MESAJE
                                 JOptionPane.showMessageDialog(null, "ERROR, NO ES POSIBLE DIVIDIR ENTRE CERO");
                                     Resultado="0";
@@ -417,7 +415,7 @@ public Ventana(){
                               Pantallita.setText(Resultado);//IMPRIME EL RESULTADO EN LA PANTALLA DE LA CALCULADORA
                            }
                    }catch(NullPointerException ex){ //CAPTURA EL ERROR DE NULO Y IMPRIME VACIO EN LA PANTALLA DE LA CALCULADORA
-                          Pantallita.setText("");
+                       Pantallita.setText("");
                          }
                }else{  //SI LA ENTRADA DE DATOS ES DE TIPO CARACTERES DEVUELVE UN MENSAJE
                     JOptionPane.showMessageDialog(null, "ERROR, INGRESE NUMERO VALIDO");

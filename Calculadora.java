@@ -36,7 +36,7 @@ public class Calculadora {
           return Respuesta;
    }
     
-   public String Validar_Entrada(String entrada){ //METODO VALIDAR ENTRADA CONCATENA LA ENTRADA EN LA PANTALLA DE LA CALCULADORA
+   public String Validar_Entrada(String entrada){ //METODO VALIDAR ENTRADA CONCATENA LA ENTRADA DE DATOS EN LA PANTALLA DE LA CALCULADORA
        if(entrada.charAt(0)=='0'){
            entrada = entrada.substring(0, entrada.length());                 
        }
